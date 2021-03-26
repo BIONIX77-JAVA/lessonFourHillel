@@ -17,7 +17,7 @@ public class Main {
 
         Map<Integer, Product> productList = new HashMap();
         IntStream.rangeClosed(1, 100).forEach(step -> {
-            productList.put(step, new Product(step, "title #" + step, BigDecimal.TEN));
+            productList.put(step, new Product(step, "title #" + step, new BigDecimal("453.54")));
         });
 
         List<Order> orders = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Main {
         order.getProducts().add(new ProductItem(productList.get(14), 7));
         order.getProducts().add(new ProductItem(productList.get(17), 5));
         order.setCustomer(new Customer(1, "Vasil"));
-        order.setShippingDetails(new ShippingDetails(BigDecimal.TEN, "Puskina 45"));
+        order.setShippingDetails(new ShippingDetails(BigDecimal.TEN, "Puskin 45"));
         order.setStatus(OrderStatus.DELIVERING);
         orders.add(order);
 
@@ -35,8 +35,8 @@ public class Main {
         order1.getProducts().add(new ProductItem(productList.get(10), 6));
         order1.getProducts().add(new ProductItem(productList.get(55), 11));
         order1.setCustomer(new Customer(2, "Petro"));
-        order1.setShippingDetails(new ShippingDetails(BigDecimal.TEN, "Buskin 23"));
-        order1.setStatus(OrderStatus.CREATED);
+        order1.setShippingDetails(new ShippingDetails(null, null));
+        order1.setStatus(null);
         orders.add(order1);
 
         Order order2 = new Order(3);
@@ -44,8 +44,8 @@ public class Main {
         order2.getProducts().add(new ProductItem(productList.get(23), 56));
         order2.getProducts().add(new ProductItem(productList.get(34), 7));
         order2.getProducts().add(new ProductItem(productList.get(27), 8));
-        order2.setCustomer(new Customer(1, "Tolik"));
-        order2.setShippingDetails(new ShippingDetails(BigDecimal.TEN, "Esenina 45"));
+        order2.setCustomer(new Customer(3, "Tolik"));
+        order2.setShippingDetails(new ShippingDetails(new BigDecimal("234.43"), "Esenina 45"));
         order2.setStatus(OrderStatus.DELIVERING);
         orders.add(order2);
 
@@ -57,10 +57,11 @@ public class Main {
         order3.getProducts().add(new ProductItem(productList.get(45), 45));
         order3.getProducts().add(new ProductItem(productList.get(56), 13));
 
-        order3.setCustomer(new Customer(2, "Petro"));
+        order3.setCustomer(new Customer(4, "Morris"));
         order3.setShippingDetails(new ShippingDetails(BigDecimal.TEN, "Lenin 23"));
         order3.setStatus(OrderStatus.DELIVERING);
         orders.add(order3);
+
 
         Collections.sort(orders, new Comparator<Order>() {
             @Override
@@ -70,11 +71,13 @@ public class Main {
         });
 
 
-//        System.out.println(orders.size());
-//
-//        for (int i = 0; i < orders.size(); i++) {
-        System.out.println(orders.get(0));
-    }
+        for (int i = 0; i < orders.size(); i++) {
+            System.out.println(orders.get(i));
+        }
 
-//        orders.forEach(System.out::println);
+        System.out.format("%15s%15s%15s%15s%15s", order.getCustomer(), order.getId(), order.getStatus(), order.getShippingDetails(), order.getCost());
+
+
+//       orders.forEach(System.out::println);
+    }
 }

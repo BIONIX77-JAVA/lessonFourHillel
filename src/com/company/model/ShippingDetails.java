@@ -29,9 +29,7 @@ public class ShippingDetails {
 
     @Override
     public String toString() {
-        return "ShippingDetails{"
-                + "Address= " + getAddress() + '\''
-                + ", cost= " + getCost()
-                + '}';
+        return " " + " " + getAddress()
+                + " Cost =  " + getCost();
     }
 }

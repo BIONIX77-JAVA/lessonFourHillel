@@ -1,8 +1,11 @@
 package com.company.model;
 
+import java.math.BigDecimal;
+
 public class ProductItem {
     private Product product;
     private int quantity;
+
 
     public ProductItem(Product product, int quantity) {
         this.product = product;
@@ -27,8 +30,11 @@ public class ProductItem {
 
     @Override
     public String toString() {
-        return "ProductItem= " + getProduct() + '\''
-                + ", quantity= " + getQuantity()
-                + '}';
+        return " " + getProduct() +
+                " * " + getQuantity() +
+                " = " + getCost().toString();
+    }
+    public  BigDecimal getCost(){
+        return product.getPrice().multiply(new BigDecimal(quantity));
     }
 }

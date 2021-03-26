@@ -1,5 +1,6 @@
 package com.company.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,13 +70,22 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{"
-                + "Customer='" + getCustomer() + '\''
-                + ", Products= " + getProducts()
-                + ", ShippingDetails=" + getShippingDetails()
-                + ", date=" + getCreated()
-                + ", status=" + getStatus()
-                + ", ID=" + getId()
-                + '}';
+        return "Order("
+                + "Customer  " + getCustomer()
+                + ", Products " + getProducts()
+                + ", total cost =  " + getCost()
+                + ", ShippingDetails " + getShippingDetails()
+                + ", date " + getCreated()
+                + ", status " + getStatus()
+                + ", ID " + getId()
+                + ')';
+    }
+
+    public BigDecimal getCost() {
+        BigDecimal cost = BigDecimal.ZERO;
+        for (ProductItem product : products) {
+            cost = cost.add(product.getCost());
+        }
+        return cost;
     }
 }
